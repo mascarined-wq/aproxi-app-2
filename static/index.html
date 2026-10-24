@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>Aproxi</title>
+  <meta name="description" content="Aproxi, seu parceiro de estudos">
+  <meta name="theme-color" content="#f6f8fc" id="metaTheme">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Aproxi">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="16" fill="var(--pen)"/>
+    <path d="M20 48 32 16 44 48" fill="none" stroke="var(--pen-ink)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M25.5 38h13" stroke="#ffe45c" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div id="app">
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu" type="button" aria-label="Abrir conversas e configurações">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+    <div class="brand"><span class="wordmark">Aproxi</span></div>
+    <button class="icon-btn" id="btnNew" type="button" aria-label="Nova conversa">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+  </header>
+
+  <main id="chat" tabindex="-1">
+    <section id="empty">
+      <h1>Oi, eu sou o Aproxi.</h1>
+      <p class="lead">Tire uma dúvida, peça um resumo ou me peça para testar o que você já sabe.</p>
+      <p class="aviso" id="aviso" hidden></p>
+      <ul class="sugestoes" aria-label="Sugestões para começar">
+        <li><button type="button" data-prompt="Monte um plano de estudos para esta semana">Monte um plano de estudos para esta semana</button></li>
+        <li><button type="button" data-prompt="Explique recursão com um exemplo simples">Explique recursão com um exemplo simples</button></li>
+        <li><button type="button" data-prompt="Faça um quiz de 5 perguntas comigo">Faça um quiz de 5 perguntas comigo</button></li>
+        <li><button type="button" data-prompt="Me dê dicas para memorizar antes da prova">Me dê dicas para memorizar antes da prova</button></li>
+      </ul>
+    </section>
+    <div id="messages" role="log" aria-live="polite" aria-label="Conversa"></div>
+  </main>
+
+  <form id="composer" autocomplete="off">
+    <div class="campo">
+      <textarea id="input" rows="1" placeholder="Pergunte algo ao Aproxi" aria-label="Sua mensagem" enterkeyhint="send"></textarea>
+      <button id="send" type="submit" data-state="send" aria-label="Enviar" disabled>
+        <svg class="i-send" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg class="i-stop" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div id="scrim"></div>
+<aside id="drawer" aria-hidden="true" aria-label="Conversas e configurações">
+  <div class="drawer-top">
+    <span class="wordmark">Aproxi</span>
+    <button class="icon-btn" id="btnClose" type="button" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+
+  <button class="nova-conversa" id="btnNewDrawer" type="button">Nova conversa</button>
+
+  <h2>Conversas</h2>
+  <ul id="chatList"></ul>
+
+  <div class="config">
+    <h2>Aparência</h2>
+    <div class="segmentos" role="group" aria-label="Tema">
+      <button type="button" data-tema="auto" aria-pressed="true">Automático</button>
+      <button type="button" data-tema="light" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="dark" aria-pressed="false">Escuro</button>
+    </div>
+
+    <div id="senhaWrap" hidden>
+      <h2><label for="senhaInput">Senha de acesso</label></h2>
+      <input id="senhaInput" type="password" autocomplete="current-password" placeholder="Digite a senha do seu Aproxi">
+    </div>
+
+    <button class="secundario" id="btnInstall" type="button" hidden>Instalar o Aproxi neste aparelho</button>
+    <p class="dica" id="iosHint" hidden>Para instalar no iPhone: toque em Compartilhar e escolha Adicionar à Tela de Início.</p>
+
+    <button class="perigo" id="btnClear" type="button">Apagar todas as conversas</button>
+  </div>
+</aside>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
